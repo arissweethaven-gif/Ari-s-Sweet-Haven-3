@@ -16,6 +16,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#flavors">Shop</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#order">Order</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
       </nav>
@@ -33,7 +34,7 @@
         </p>
         <div class="hero-buttons">
           <a href="#flavors" class="btn">Shop Flavors</a>
-          <a href="#contact" class="btn btn-outline">Contact</a>
+          <a href="#order" class="btn btn-outline">Order Now</a>
         </div>
       </div>
     </section>
@@ -99,6 +100,113 @@
       </div>
     </section>
 
+    <section id="order" class="order-section">
+      <div class="order-container">
+        <h2>Place an Order</h2>
+        <p class="order-intro">
+          Choose your cookies, review your cart, and submit your order request below.
+          Orders are confirmed after payment is received.
+        </p>
+
+        <div class="shop-grid">
+          <div class="products">
+            <div class="product-card">
+              <h3>S'mores</h3>
+              <p>Chocolate cookie topped with graham cracker and marshmallow flavor.</p>
+              <p class="price">$5.00</p>
+              <button onclick="addToCart('Smores', 5)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+              <h3>Biscoff</h3>
+              <p>Cookie butter inspired cookie with rich caramelized flavor.</p>
+              <p class="price">$5.00</p>
+              <button onclick="addToCart('Biscoff', 5)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+              <h3>Chocolate Peanut Butter</h3>
+              <p>Chocolate cookie with peanut butter flavor.</p>
+              <p class="price">$5.00</p>
+              <button onclick="addToCart('Chocolate Peanut Butter', 5)">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="cart-form-wrap">
+            <div class="cart-box">
+              <h3>Your Cart</h3>
+              <div id="cart-items">
+                <p>Your cart is empty.</p>
+              </div>
+              <div class="cart-summary">
+                <p>Subtotal: <span id="subtotal">$0.00</span></p>
+                <p>
+                  Service Type:
+                  <select id="serviceType" onchange="updateCart()">
+                    <option value="pickup">Pickup (Free)</option>
+                    <option value="delivery">Local Delivery ($5.00)</option>
+                    <option value="shipping">Shipping ($8.00)</option>
+                  </select>
+                </p>
+                <p>Total: <span id="total">$0.00</span></p>
+              </div>
+            </div>
+
+            <form class="order-form" onsubmit="submitOrder(event)">
+              <h3>Order Details</h3>
+
+              <label for="customerName">Full Name</label>
+              <input type="text" id="customerName" required />
+
+              <label for="customerEmail">Email</label>
+              <input type="email" id="customerEmail" required />
+
+              <label for="customerPhone">Phone Number</label>
+              <input type="tel" id="customerPhone" required />
+
+              <label for="customerAddress">Address</label>
+              <textarea id="customerAddress" rows="3" placeholder="Required for delivery or shipping"></textarea>
+
+              <label for="requestedDate">Requested Date</label>
+              <input type="date" id="requestedDate" />
+
+              <label for="paymentMethod">Payment Method</label>
+              <select id="paymentMethod" onchange="togglePaymentInfo()" required>
+                <option value="">Select payment method</option>
+                <option value="paypal">PayPal</option>
+                <option value="zelle">Zelle</option>
+              </select>
+
+              <div id="paypal-info" class="payment-info hidden">
+                <p>
+                  PayPal checkout can be connected here later. For now, you can keep this
+                  as your online payment option placeholder.
+                </p>
+                <button type="button" class="checkout-btn">Checkout with PayPal</button>
+              </div>
+
+              <div id="zelle-info" class="payment-info hidden">
+                <p>
+                  Please send your Zelle payment to:
+                  <strong>yourparentemail@example.com</strong>
+                </p>
+                <p>
+                  Orders paid with Zelle are not confirmed until payment is received.
+                </p>
+              </div>
+
+              <label for="notes">Notes</label>
+              <textarea id="notes" rows="4" placeholder="Allergies, delivery notes, special requests, etc."></textarea>
+
+              <button type="submit" class="submit-order-btn">Submit Order Request</button>
+            </form>
+
+            <div id="order-message" class="order-message"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact">
       <div class="container contact-box">
         <p class="section-label">Contact</p>
@@ -120,5 +228,7 @@
       <p>© 2026 Ari's Sweet Haven</p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
